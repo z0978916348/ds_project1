@@ -13,8 +13,8 @@ int main()
 {
     Tetris tetris;
     int rows, cols;
-    //cin >> rows >> cols >> tetris.str >> tetris.position;
-    ifstream inFile("myin.out", ios::in);
+    cin >> rows >> cols >> tetris.str >> tetris.position;
+    /*ifstream inFile("myin.out", ios::in);
     if (! inFile) {
         cout << "cannot open myin.out" << endl;
         return 1;
@@ -25,7 +25,7 @@ int main()
     if (! outFile) {
         cout << "cannot open myout.out" << endl;
         return 1;
-    }
+    }*/
 
     int **Map = new int*[rows+4];
     for (int i=0; i<rows+4; i++) Map[i] = new int[cols+1];
@@ -216,38 +216,49 @@ int main()
             while ( Map[place][pos+1]!=0 ) place--;
             Map[place][pos] = Map[place][pos+1] = Map[place-1][pos] = Map[place-1][pos+1] = 1;
         }
-        int flag = 1, floor = 0, index; 
+        int flag = 1, floor = 0;
+        int index[5] = {0}; 
         for (int i=rows+3; i>3; i--) {   //  消掉排
             flag = 1;
-            for (int j=1; j<=cols+1; j++) 
+            for (int j=1; j<cols+1; j++) 
                 if (Map[i][j]==0) flag = 0;
-            //cout << "flag = " << flag << endl;
-            //cout << "i = " << i << endl;
             if (flag) {
-                floor++;
                 for (int j=1; j<=cols+1; j++)
                     Map[i][j] = 0;
             }
-            
+            //cout << "flag = " << flag << endl;
+            //cout << "i = " << i << endl;
             //cout << "i = " << i << " flag = " << flag << endl;
-            if ( flag )index = i;
+            if ( flag ) {
+                index[floor] = i+floor;
+                floor++;
+            }           
         }
-        
-        index = index + floor - 1;
-        //cout << "index = " << index << " floor = " << floor << endl;
-        if (floor > 0) {
-                for (int i=index; i>floor-1; i--) {         //消掉後下降
+        /*for (int i=4; i<rows+4; i++) {  //show Map
+            for (int j=1; j<cols+1; j++) {
+                //outFile << Map[i][j];
+                cout << Map[i][j] << " ";
+            }
+            //outFile << endl;
+            cout << endl;
+        }*/
+        //cout << "---------------after-----------------------------------" << endl;
+        //cout << "index[0] = " << index[0] << " index[1] = " << index[1] << endl;
+        if ( floor > 0) {
+            for (int k=0; k<floor; k++) {         //消掉後下降
+                for (int i=index[k]; i>0; i--)
                     for (int j=1; j<cols+1; j++) {
-                        if (Map[i-floor][j] == 1) Map[i][j] = 1;
+                        if (Map[i-1][j]==1) Map[i][j] = 1;
                         else Map[i][j] = 0;
                     }
-                }
-                //cout << "OK" << endl;
-                for (int i=0; i<floor; i++)
-                for (int j=1; j<cols+1; j++)
-                    Map[i][j] = 0;
+                
+                 //cout << "****************************************************" << endl;
+            }
+            for (int j=1; j<cols+1; j++)
+                Map[0][j] = 0;
         }
         
+        //cout << "--------------------------------------------------------" << endl;
         for (int i=rows+3; i>=0; i--) {   // 存每個col第幾個row可用 size (rows+4)*cols
             for (int j=1; j<cols+1; j++) {
                 if (Map[i][j]==1) empty[j] = i-1;
@@ -270,28 +281,28 @@ int main()
         cout << "---------------------------------" << endl;*/
         for (int i=1; i<cols+1; i++) {
             if (empty[i] < 3) {
-                outFile << "Game Over" << endl;
-                //cout << "Game Over" << endl;
+                //outFile << "Game Over" << endl;
+                cout << "Game Over" << endl;
                 return 0;
             }
         }
     
-        //cin >> tetris.str;
-        inFile >> tetris.str;
+        cin >> tetris.str;
+        //inFile >> tetris.str;
         if (tetris.str == "End") break;
-        inFile >> tetris.position;
-        //cin >> tetris.position;  //指令輸入
+        //inFile >> tetris.position;
+        cin >> tetris.position;  //指令輸入
 
     }
     
     
     for (int i=4; i<rows+4; i++) {  //show Map
             for (int j=1; j<cols+1; j++) {
-                outFile << Map[i][j];
-                //cout << Map[i][j] << " ";
+                //outFile << Map[i][j];
+                cout << Map[i][j] << " ";
             }
-            outFile << endl;
-            //cout << endl;
+            //outFile << endl;
+            cout << endl;
     }
     
     return 0;
