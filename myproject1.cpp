@@ -159,52 +159,175 @@ int main()
             cout << "empty[" << i << "] = " << empty[i] << endl;   ***test empty[col] */ 
         int pos = tetris.position;
         if ( tetris.str == "T1") {
-            
-            if (pos>cols-2 || pos<1 ) {
+            if (pos>cols-2 || pos<1 || cols<3 ) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos+1];                    
+            while ( !(Map[place-1][pos]==0 && Map[place-1][pos+2]==0) ) place--;
+            Map[place][pos+1] = Map[place-1][pos+1] = Map[place-1][pos] = Map[place-1][pos+2] = 1;   
+        } else if ( tetris.str == "T2") {
+            if (pos>cols-1 || pos<1 || cols<2 ) {                 //判斷測資是否合法
                 cin >> tetris.str >> tetris.position;  
                 cout << "invalid" << endl;
                 continue;
             }
             int place = empty[pos+1];
-            while ( !(Map[place-1][pos]==0 && Map[place-1][pos+2]==0) ) place--;
-            Map[place][pos+1] = Map[place-1][pos+1] = Map[place-1][pos] = Map[place-1][pos+2] = 1;   
-
-        } else if ( tetris.str == "T2") {
-
+            while ( Map[place-1][pos]!=0 ) place--;
+            Map[place][pos+1] = Map[place-1][pos+1] = Map[place-2][pos+1] = Map[place-1][pos] = 1;
         } else if ( tetris.str == "T3") {
-            
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos+1];
+            while ( !(Map[place][pos]==0 && Map[place][pos+2]==0) ) place--;
+            Map[place][pos+1] = Map[place-1][pos+1] = Map[place][pos] = Map[place][pos+2] = 1;
         } else if ( tetris.str == "T4") {
-            
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( Map[place-1][pos+1]!=0 ) place--; 
+            Map[place][pos] = Map[place-1][pos] = Map[place-2][pos] = Map[place-1][pos+1] = 1;
         } else if ( tetris.str == "L1") {
-            
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( Map[place][pos+1]!=0 ) place--;
+            Map[place][pos] = Map[place][pos+1] = Map[place-1][pos] = Map[place-2][pos] = 1;
         } else if ( tetris.str == "L2") {
-            
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( !(Map[place-1][pos+1]==0 && Map[place-1][pos+2]==0) ) place--;
+            Map[place][pos] = Map[place-1][pos] = Map[place-1][pos+1] = Map[place-1][pos+2] = 1;
         } else if ( tetris.str == "L3") {
-            
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos+1];
+            while ( Map[place-2][pos]!=0 ) place--;
+            Map[place][pos+1] = Map[place-1][pos+1] = Map[place-2][pos+1] = Map[place-2][pos] = 1; 
         } else if ( tetris.str == "L4") {
-            
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( !(Map[place][pos+1]==0 && Map[place][pos+1]==0) ) place--;
+            Map[place][pos] = Map[place][pos+1] = Map[place][pos+2] = Map[place-1][pos+2] = 1;
         } else if ( tetris.str == "J1") {
-            
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( Map[place][pos+1]!=0 ) place--;
+            Map[place][pos] = Map[place][pos+1] = Map[place-1][pos+1] = Map[place-2][pos+1] = 1;
         } else if ( tetris.str == "J2") {
-            
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( !(Map[place][pos+1]==0 && Map[place][pos+2]==0) ) place--;
+            Map[place][pos] = Map[place-1][pos] = Map[place][pos+1] = Map[place][pos+2] = 1;
         } else if ( tetris.str == "J3") {
-            
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( Map[place-2][pos+1]!=0 ) place--;
+            Map[place][pos] = Map[place-1][pos] = Map[place-2][pos] = Map[place-2][pos+1] = 1;
         } else if ( tetris.str == "J4") {
-            
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos+2];
+            while( !(Map[place-1][pos]==0 && Map[place-1][pos+1]==0) ) place--;
+            Map[place][pos+2] = Map[place-1][pos] = Map[place-1][pos+1] = Map[place-1][pos+2] = 1;
         } else if ( tetris.str == "S1") {
-            
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( !(Map[place][pos+1]==0 && Map[place-1][pos+2]==0) ) place--;
+            Map[place][pos] = Map[place][pos+1] = Map[place-1][pos+1] = Map[place-1][pos+2] = 1;
         } else if ( tetris.str == "S2") {
-            
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos+1];
+            while ( Map[place-1][pos]!=0 ) place--;
+            Map[place][pos+1] = Map[place-1][pos] = Map[place-1][pos+1] = Map[place-2][pos] = 1;
         } else if ( tetris.str == "Z1") {
-            
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos+1];
+            while ( !(Map[place-1][pos]==0 && Map[place][pos+2]==0) ) place--;
+            Map[place][pos+1] = Map[place][pos+2] = Map[place-1][pos] = Map[place-1][pos+1] = 1;
         } else if ( tetris.str == "Z2") {
-            
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( Map[place-1][pos+1]!=0 ) place--;
+            Map[place][pos] = Map[place-1][pos] = Map[place-1][pos+1] = Map[place-2][pos+1] = 1;
         } else if ( tetris.str == "I1") {
-            
+            if (pos>cols || pos<1 || cols<1) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            Map[place][pos] = Map[place-1][pos] = Map[place-2][pos] = Map[place-3][pos] = 1;
         } else if ( tetris.str == "I2") {
-            
+            if (pos>cols-3 || pos<1 || cols<4) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( !(Map[place][pos+1]==0 && Map[place][pos+2]==0 && Map[place][pos+3]==0) ) place--;
+            Map[place][pos] = Map[place][pos+1] = Map[place][pos+2] = Map[place][pos+3] = 1;
         } else {     // tetris.str == "O"
-
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+                cin >> tetris.str >> tetris.position;  
+                cout << "invalid" << endl;
+                continue;
+            }
+            int place = empty[pos];
+            while ( Map[place][pos+1]!=0 ) place--;
+            Map[place][pos] = Map[place][pos+1] = Map[place-1][pos] = Map[place-1][pos+1] = 1;
         }
         int flag = 1, floor = 0, index; 
         for (int i=rows+3; i>3; i--) {   //  消掉排
@@ -244,6 +367,14 @@ int main()
                 else if (Map[0][j]==1) empty[j] = 0; // 如果整個col連額外的4格都滿了 最上面那格設為0
             }
         }
+        flag = 1;
+        for (int i=1; i<cols+1; i++) {         //如果消除完 col為全空 則將empty[col]設為rows+3
+            for (int j=rows+3; j>=0; j--) {
+                if (Map[j][i]==1) flag = 0;
+            }
+            if ( flag ) empty[i] = rows+3;
+        }
+        
         //cout << "empty[2] = " << empty[2] << endl;              ***for debug
         /*cout << "---------------------------------" << endl;
         for (int i=1; i<cols+1; i++)
@@ -256,15 +387,17 @@ int main()
                 return 0;
             }
         }
-        for (int i=4; i<rows+4; i++) {  //show Map
-                for (int j=1; j<cols+1; j++) {
-                    cout << Map[i][j] << " ";
-                }
-                cout << endl;
-        }
-        cin >> tetris.str >> tetris.position;  //指令輸入
-    }
     
+        cin >> tetris.str;
+        if (tetris.str == "End") break;
+        cin >> tetris.position;  //指令輸入
+    }
+    for (int i=4; i<rows+4; i++) {  //show Map
+            for (int j=1; j<cols+1; j++) {
+                cout << Map[i][j] << " ";
+            }
+            cout << endl;
+    }
     
     return 0;
 }
