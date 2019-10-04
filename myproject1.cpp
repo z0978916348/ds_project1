@@ -13,9 +13,9 @@ int main()
 {
     Tetris tetris;
     int rows, cols;
-    cin >> rows >> cols >> tetris.str >> tetris.position;
+    //cin >> rows >> cols >> tetris.str >> tetris.position;
     
-    /*ifstream inFile("myin.out", ios::in);
+    ifstream inFile("myin.out", ios::in);
     if (! inFile) {
         cout << "cannot open myin.out" << endl;
         return 1;
@@ -26,7 +26,7 @@ int main()
     if (! outFile) {
         cout << "cannot open myout.out" << endl;
         return 1;
-    }*/
+    }
 
     int **Map = new int*[rows+4];
     for (int i=0; i<rows+4; i++) Map[i] = new int[cols+1];
@@ -48,157 +48,157 @@ int main()
         int pos = tetris.position;
         //cout << "position = " << tetris.position << endl;
         if ( tetris.str == "T1") {
-            /*if (pos>cols-2 || pos<1 || cols<3 ) {                 //判斷測資是否合法
+            if (pos>cols-2 || pos<1 || cols<3 ) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos+1];  
             //cout << "place = " << place << endl;                  
             while ( !(Map[place-1][pos]==0 && Map[place-1][pos+2]==0) ) place--;
             Map[place][pos+1] = Map[place-1][pos+1] = Map[place-1][pos] = Map[place-1][pos+2] = 1;   
         } else if ( tetris.str == "T2") {
-            /*if (pos>cols-1 || pos<1 || cols<2 ) {                 //判斷測資是否合法
+            if (pos>cols-1 || pos<1 || cols<2 ) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos+1];
             while ( Map[place-1][pos]!=0 ) place--;
             Map[place][pos+1] = Map[place-1][pos+1] = Map[place-2][pos+1] = Map[place-1][pos] = 1;
         } else if ( tetris.str == "T3") {
-            /*if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法 
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法 
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos+1];
             while ( !(Map[place][pos]==0 && Map[place][pos+2]==0) ) place--;
             Map[place][pos+1] = Map[place-1][pos+1] = Map[place][pos] = Map[place][pos+2] = 1;
         } else if ( tetris.str == "T4") {
-            /*if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( Map[place-1][pos+1]!=0 ) place--; 
             Map[place][pos] = Map[place-1][pos] = Map[place-2][pos] = Map[place-1][pos+1] = 1;
         } else if ( tetris.str == "L1") {
-            /*if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( Map[place][pos+1]!=0 ) place--;
             Map[place][pos] = Map[place][pos+1] = Map[place-1][pos] = Map[place-2][pos] = 1;
         } else if ( tetris.str == "L2") {
-            /*if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( !(Map[place-1][pos+1]==0 && Map[place-1][pos+2]==0) ) place--;
             Map[place][pos] = Map[place-1][pos] = Map[place-1][pos+1] = Map[place-1][pos+2] = 1;
         } else if ( tetris.str == "L3") {
-            /*if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos+1];
             while ( Map[place-2][pos]!=0 ) place--;
             Map[place][pos+1] = Map[place-1][pos+1] = Map[place-2][pos+1] = Map[place-2][pos] = 1; 
         } else if ( tetris.str == "L4") {
-            /*if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( !(Map[place][pos+1]==0 && Map[place][pos+1]==0) ) place--;
             Map[place][pos] = Map[place][pos+1] = Map[place][pos+2] = Map[place-1][pos+2] = 1;
         } else if ( tetris.str == "J1") {
-            /*if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( Map[place][pos+1]!=0 ) place--;
             Map[place][pos] = Map[place][pos+1] = Map[place-1][pos+1] = Map[place-2][pos+1] = 1;
         } else if ( tetris.str == "J2") {
-            /*if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( !(Map[place][pos+1]==0 && Map[place][pos+2]==0) ) place--;
             Map[place][pos] = Map[place-1][pos] = Map[place][pos+1] = Map[place][pos+2] = 1;
         } else if ( tetris.str == "J3") {
-            /*if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( Map[place-2][pos+1]!=0 ) place--;
             Map[place][pos] = Map[place-1][pos] = Map[place-2][pos] = Map[place-2][pos+1] = 1;
         } else if ( tetris.str == "J4") {
-            /*if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos+2];
             while( !(Map[place-1][pos]==0 && Map[place-1][pos+1]==0) ) place--;
             Map[place][pos+2] = Map[place-1][pos] = Map[place-1][pos+1] = Map[place-1][pos+2] = 1;
         } else if ( tetris.str == "S1") {
-            /*if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( !(Map[place][pos+1]==0 && Map[place-1][pos+2]==0) ) place--;
             Map[place][pos] = Map[place][pos+1] = Map[place-1][pos+1] = Map[place-1][pos+2] = 1;
         } else if ( tetris.str == "S2") {
-            /*if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos+1];
             while ( Map[place-1][pos]!=0 ) place--;
             Map[place][pos+1] = Map[place-1][pos] = Map[place-1][pos+1] = Map[place-2][pos] = 1;
         } else if ( tetris.str == "Z1") {
-            /*if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
+            if (pos>cols-2 || pos<1 || cols<3) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos+1];
             while ( !(Map[place-1][pos]==0 && Map[place][pos+2]==0) ) place--;
             Map[place][pos+1] = Map[place][pos+2] = Map[place-1][pos] = Map[place-1][pos+1] = 1;
         } else if ( tetris.str == "Z2") {
-            /*if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( Map[place-1][pos+1]!=0 ) place--;
             Map[place][pos] = Map[place-1][pos] = Map[place-1][pos+1] = Map[place-2][pos+1] = 1;
         } else if ( tetris.str == "I1") {
-            /*if (pos>cols || pos<1 || cols<1) {                 //判斷測資是否合法
+            if (pos>cols || pos<1 || cols<1) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             //cout << "place = " << place << endl;
             //cout << "pos = " << pos << endl;
             //cout << "empty[pos] = " <<empty[pos] << endl;
             Map[place][pos] = Map[place-1][pos] = Map[place-2][pos] = Map[place-3][pos] = 1;
         } else if ( tetris.str == "I2") {
-            /*if (pos>cols-3 || pos<1 || cols<4) {                 //判斷測資是否合法
+            if (pos>cols-3 || pos<1 || cols<4) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( !(Map[place][pos+1]==0 && Map[place][pos+2]==0 && Map[place][pos+3]==0) ) place--;
             Map[place][pos] = Map[place][pos+1] = Map[place][pos+2] = Map[place][pos+3] = 1;
         } else {     // tetris.str == "O"
-            /*if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
+            if (pos>cols-1 || pos<1 || cols<2) {                 //判斷測資是否合法
                 outFile << "invalid" << endl;
                 break;
-            }*/
+            }
             int place = empty[pos];
             while ( Map[place][pos+1]!=0 ) place--;
             Map[place][pos] = Map[place][pos+1] = Map[place-1][pos] = Map[place-1][pos+1] = 1;
@@ -291,31 +291,31 @@ int main()
         }
         if (jump) break;
 
-        for (int i=4; i<rows+4; i++) {  //show Map
+        /*for (int i=4; i<rows+4; i++) {  //show Map
             for (int j=1; j<cols+1; j++) {
                 //outFile << Map[i][j];
                 cout << Map[i][j] << " ";
             }
             //outFile << endl;
             cout << endl;
-        }
+        }*/
 
-        cin >> tetris.str;
-        //inFile >> tetris.str;
+        //cin >> tetris.str;
+        inFile >> tetris.str;
         if (tetris.str == "End") break;
-        //inFile >> tetris.position;
-        cin >> tetris.position;  //指令輸入
+        inFile >> tetris.position;
+        //cin >> tetris.position;  //指令輸入
 
     }
     
     
     for (int i=4; i<rows+4; i++) {  //show Map
             for (int j=1; j<cols+1; j++) {
-                //outFile << Map[i][j];
-                cout << Map[i][j] << " ";
+                outFile << Map[i][j];
+                //cout << Map[i][j] << " ";
             }
-            //outFile << endl;
-            cout << endl;
+            outFile << endl;
+            //cout << endl;
     }
     
     return 0;
