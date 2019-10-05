@@ -238,11 +238,10 @@ int main()
                         if (Map[i-1][j]==1) Map[i][j] = 1;
                         else Map[i][j] = 0;
                     }
-                
                  //cout << "****************************************************" << endl;
-            }
             for (int j=1; j<cols+1; j++)
                 Map[0][j] = 0;
+            }
         }
         
         //cout << "--------------------------------------------------------" << endl;
@@ -290,7 +289,7 @@ int main()
             }
         }
         if (jump) break;
-
+        
         /*for (int i=4; i<rows+4; i++) {  //show Map
             for (int j=1; j<cols+1; j++) {
                 //outFile << Map[i][j];
