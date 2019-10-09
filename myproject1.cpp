@@ -15,14 +15,14 @@ int main()
     int rows, cols;
     //cin >> rows >> cols >> tetris.str >> tetris.position;
     
-    ifstream inFile("tetris.data", ios::in);
+    ifstream inFile("Tetris.data", ios::in);
     if (! inFile) {
         cout << "cannot open tetris.data" << endl;
         return 1;
     }
     inFile >> rows >> cols >> tetris.str >> tetris.position;
 
-    ofstream outFile("tetris.final", ios::out);   //輸出檔案
+    ofstream outFile("Tetris.output", ios::out);   //輸出檔案
     if (! outFile) {
         cout << "cannot open tetris.final" << endl;
         return 1;
