@@ -161,7 +161,7 @@ int main()
                 break;
             }
             int place = empty[pos+1];
-            
+
             while ( !(Map[place-1][pos]==0 && place-1<=empty[pos]) ) place--;
             Map[place][pos+1] = Map[place-1][pos] = Map[place-1][pos+1] = Map[place-2][pos] = 1;
         } else if ( tetris.str == "Z1") {
@@ -215,7 +215,7 @@ int main()
         }
         int flag = 1, floor = 0;
         int index[5] = {0};
-        for (int i=rows+3; i>3; i--) {   //  消掉排
+        for (int i=rows+3; i>=0; i--) {   //  消掉排
             flag = 1;
             for (int j=1; j<cols+1; j++)
                 if (Map[i][j]==0) flag = 0;
@@ -231,6 +231,7 @@ int main()
                 floor++;
             }
         }
+        if (index[0] < 4 && floor>0) break;
         /*for (int i=4; i<rows+4; i++) {  //show Map
             for (int j=1; j<cols+1; j++) {
                 //outFile << Map[i][j];
@@ -319,7 +320,7 @@ int main()
 
     }
 
-    
+
     for (int i=4; i<rows+4; i++) {  //show Map
             for (int j=1; j<cols+1; j++) {
                 outFile << Map[i][j];
