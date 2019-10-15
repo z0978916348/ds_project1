@@ -22,7 +22,7 @@ int main()
     }
     inFile >> rows >> cols >> tetris.str >> tetris.position;
 
-    ofstream outFile("Tetris.output", ios::out);   //輸出檔案
+    ofstream outFile("Tetris.final", ios::out);   //輸出檔案
     if (! outFile) {
         cout << "cannot open Tetris.output" << endl;
         return 1;
