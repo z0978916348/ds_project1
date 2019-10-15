@@ -24,7 +24,7 @@ int main()
 
     ofstream outFile("Tetris.final", ios::out);   //輸出檔案
     if (! outFile) {
-        cout << "cannot open Tetris.output" << endl;
+        cout << "cannot open Tetris.final" << endl;
         return 1;
     }
 
